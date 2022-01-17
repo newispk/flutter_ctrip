@@ -39,7 +39,7 @@ class TravelSearchDao {
   static Future<TravelSearchModel> fetch(
       String url, String keyword) async {
     Params['keyword'] = keyword;
-    final response = await http.post(url, body: jsonEncode(Params));
+    final response = await http.post(Uri.parse(url), body: jsonEncode(Params));
     if (response.statusCode == 200) {
       Utf8Decoder utf8decoder = Utf8Decoder(); // fix 中文乱码
       var result = json.decode(utf8decoder.convert(response.bodyBytes));
